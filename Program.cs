@@ -1,5 +1,5 @@
 
-using System;  // ضروري علشان نستخدم Console
+using System; 
 
 namespace CarMaintenanceSystem
 {
