@@ -51,7 +51,44 @@ namespace CarMaintenanceSystem
     {
         static void Main(string[] args)
         {
-            
+            // Creating service providers (static data)
+ServiceProvider sp1 = new ServiceProvider(
+"POV001",
+"Car Care Center",
+"Oil Change"
+);
+
+ServiceProvider sp2 = new ServiceProvider(
+"POV002",
+"Speed Fix Garage",
+"Engine Repair"
+);
+
+ServiceProvider sp3 = new ServiceProvider(
+"POV003",
+"Auto Shine",
+"Car Washing"
+);
+
+ServiceProvider sp4 = new ServiceProvider(
+"POV004",
+"Brake Masters",
+"Brake Maintenance"
+);
+
+// Display data
+PrintServiceProvider(sp1);
+PrintServiceProvider(sp2);
+PrintServiceProvider(sp3);
+PrintServiceProvider(sp4);
+}
+
+static void PrintServiceProvider(ServiceProvider sp)
+{
+Console.WriteLine("ID: " + sp.ID);
+Console.WriteLine("Name: " + sp.Name);
+Console.WriteLine("Service: " + sp.Service);
+Console.WriteLine("----------------------");
         }
     }
 }
