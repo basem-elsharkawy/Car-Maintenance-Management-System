@@ -105,6 +105,48 @@ Console.WriteLine("----------------------");
         }
     }
     // End Service providers class
+
+    // Start MaintenanceRecord Class
+        //  MaintenanceRecord.cs
+    public class MaintenanceRecord
+    {
+        // Private data for encapsulation
+        private string vehicleID; 
+        private string vehicleName;
+        private string categoryName; // e.g., "Sedan" or "SUV"
+        private string maintenanceTask;
+        private string assignedProviderID = "Unassigned"; // Store the ID 
+
+        // Public Constructor
+        public MaintenanceRecord(string vehicleID, string vehicleName, string categoryName, string maintenanceTask)
+        {
+            this.vehicleID = vehicleID;
+            this.vehicleName = vehicleName;
+            this.categoryName = categoryName;
+            this.maintenanceTask = maintenanceTask;
+        }
+
+        // Method required for assigning provider in a separate step[span_14](end_span)[span_15](end_span)
+        public void AssignProvider(string providerID)
+        {
+            this.assignedProviderID = providerID;
+        }
+        
+        // Getters/Properties
+        public string VehicleID => vehicleID;
+        public string VehicleName => vehicleName;
+        public string MaintenanceTask => maintenanceTask;
+        public string AssignedProviderID => assignedProviderID;
+
+        // Method to display the record details
+        public void DisplayRecord()
+        {
+            Console.WriteLine($"\t- Vehicle ID: {vehicleID}, Name: {vehicleName}");
+            Console.WriteLine($"\t  Category: {categoryName}, Task: {maintenanceTask}");
+            Console.WriteLine($"\t  Provider ID: {assignedProviderID}");
+        }
+    }
+    // End MaintenanceRecord Class
     class Program
     {
         static void Main(string[] args)
