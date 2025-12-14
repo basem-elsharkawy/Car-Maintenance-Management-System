@@ -89,13 +89,6 @@ ServiceProvider sp4 = new ServiceProvider(
 "Brake Maintenance"
 );
 
-// Display data
-PrintServiceProvider(sp1);
-PrintServiceProvider(sp2);
-PrintServiceProvider(sp3);
-PrintServiceProvider(sp4);
-}
-
 static void PrintServiceProvider(ServiceProvider sp)
 {
 Console.WriteLine("ID: " + sp.ID);
@@ -103,10 +96,10 @@ Console.WriteLine("Name: " + sp.Name);
 Console.WriteLine("Service: " + sp.Service);
 Console.WriteLine("----------------------");
         }
-    }
+    
     // End Service providers class
 
-    // Start MaintenanceRecord Class
+     // Start MaintenanceRecord Class
         //  MaintenanceRecord.cs
     public class MaintenanceRecord
     {
@@ -147,10 +140,15 @@ Console.WriteLine("----------------------");
         }
     }
     // End MaintenanceRecord Class
-    class Program
+
+   
+   
+    }
+     class Program
     {
         static void Main(string[] args)
         {
 
     }
+}
 }
