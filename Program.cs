@@ -47,11 +47,24 @@ namespace CarMaintenanceSystem
     }
     // End SUV Class
     }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            // Creating service providers (static data)
+
+    // Start Service providers class
+    class ServiceProviders{
+        struct ServiceProvider
+{
+public string ID;
+public string Name;
+public string Service;
+
+// Constructor
+public ServiceProvider(string id, string name, string service)
+{
+ID = id;
+Name = name;
+Service = service;
+}
+}
+                    // Creating service providers (static data)
 ServiceProvider sp1 = new ServiceProvider(
 "POV001",
 "Car Care Center",
@@ -90,5 +103,12 @@ Console.WriteLine("Name: " + sp.Name);
 Console.WriteLine("Service: " + sp.Service);
 Console.WriteLine("----------------------");
         }
+    }
+    // End Service providers class
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
     }
 }
