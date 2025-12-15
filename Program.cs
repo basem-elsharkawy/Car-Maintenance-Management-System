@@ -30,7 +30,7 @@ namespace CarMaintenanceSystem
 
             public void checkFuelEfficiency()
             {
-                // Console.WriteLine("Checking fuel efficiency for sedan...");  //Waiting untill final decision
+                 Console.WriteLine("Checking fuel efficiency for sedan..."); 
             }
         }
         // End Sedan Class
@@ -43,7 +43,7 @@ namespace CarMaintenanceSystem
 
             public void checkOffRoadCapability()
             {
-                //  Console.WriteLine("Checking off-road capability for SUV...");   // //Waiting untill final decision
+                  Console.WriteLine("Checking off-road capability for SUV...");  
             }
         }
         // End SUV Class
@@ -65,38 +65,6 @@ namespace CarMaintenanceSystem
                 Name = name;
                 Service = service;
             }
-        }
-        // Creating service providers (static data)
-        ServiceProvider sp1 = new ServiceProvider(
-        "POV001",
-        "Car Care Center",
-        "Oil Change"
-        );
-
-        ServiceProvider sp2 = new ServiceProvider(
-        "POV002",
-        "Speed Fix Garage",
-        "Engine Repair"
-        );
-
-        ServiceProvider sp3 = new ServiceProvider(
-        "POV003",
-        "Auto Shine",
-        "Car Washing"
-        );
-
-        ServiceProvider sp4 = new ServiceProvider(
-        "POV004",
-        "Brake Masters",
-        "Brake Maintenance"
-        );
-
-        static void PrintServiceProvider(ServiceProvider sp)
-        {
-            Console.WriteLine("ID: " + sp.ID);
-            Console.WriteLine("Name: " + sp.Name);
-            Console.WriteLine("Service: " + sp.Service);
-            Console.WriteLine("----------------------");
         }
 
         // End Service providers class
@@ -161,7 +129,7 @@ namespace CarMaintenanceSystem
 
         public void scheduleMaintenance()
         {
-
+            Console.WriteLine("Scheduling Maintenance:");
             if (recordcount > records.Length)
                 Console.WriteLine(" Cannot add more maintenance records");
             else
@@ -175,10 +143,12 @@ namespace CarMaintenanceSystem
                                 "1-sedan " +
                                 "or" +
                                 "2-SUV");
-                string cat = Console.ReadLine();
+                string cat = "";
+                int c = int.Parse(Console.ReadLine());
+                string category = (c == 1) ? "Sedan" : "SUV";
                 Console.WriteLine("Enter maintancetask");
                 string task = Console.ReadLine();
-                records[recordcount] = new MaintenanceRecord(id, name, cat, task);
+                records[recordcount] = new MaintenanceRecord(id, name, category, task);
                 ++recordcount;
                 Console.WriteLine($"Maintenace task {task} scheduled successfuly for {cat}{name}(ID:{id})!");
             }
@@ -186,6 +156,7 @@ namespace CarMaintenanceSystem
 
         public void viewMaintenanceHistory()
         {
+            Console.WriteLine("View Maintenance History:");
             if (recordcount == 0)
             {
                 Console.WriteLine("NO Maintenance records available");
@@ -199,6 +170,7 @@ namespace CarMaintenanceSystem
         }
         public void assignServiceProvider()
         {
+            Console.WriteLine("Assign Service Provider:");
             Console.WriteLine("Enter vehicle ID");
             string vid = Console.ReadLine();
             Console.WriteLine("Enter provider ID");
