@@ -137,21 +137,21 @@ namespace CarMaintenanceSystem
             else
             {
 
-                Console.WriteLine("Enter vehicleID");
+                Console.Write("Enter vehicleID:");
                 string id = Console.ReadLine();
-                Console.WriteLine("Enter vehicleName");
+                Console.Write("Enter vehicleName:");
                 string name = Console.ReadLine();
-                Console.WriteLine("Enter vehicleCategory \n 1-Sedan \n 2-SUV");
+                Console.WriteLine("Enter vehicleCategory: \n 1-Sedan \n 2-SUV");
                 string cat = "";
                 int c = int.Parse(Console.ReadLine());
                 string category = (c == 1) ? "Sedan" : "SUV";
-                Console.WriteLine("Enter maintancetask");
+                Console.Write("Enter maintancetask:");
                 string task = Console.ReadLine();
                 Console.Write("Enter Maintenance Date (yyyy-mm-dd): ");
                 DateTime date = DateTime.Parse(Console.ReadLine());
                 records[recordcount] = new MaintenanceRecord(id, name, category, task,date);
                 ++recordcount;
-                Console.WriteLine($"Maintenace task {task} scheduled successfuly for {cat}{name}(ID:{id})!");
+                Console.WriteLine($"*****Maintenace task {task} scheduled successfuly for {cat}{name}(ID:{id})!*****");
             }
         }
 
@@ -169,7 +169,7 @@ namespace CarMaintenanceSystem
                 bool T1 = false;
                 for (int i = 0; i < records.Length; i++)
                 {
-                    if (records[i].MaintenanceDate > DateTime.Now)
+                    if (records[i] != null && records[i].MaintenanceDate > DateTime.Now)
                     {
                         records[i].DisplayRecord();
                         T1 = true;
@@ -181,7 +181,7 @@ namespace CarMaintenanceSystem
                 bool T2 = false;
                 for (int i = 0; i < records.Length; i++)
                 {
-                    if (records[i].MaintenanceDate < DateTime.Now)
+                    if (records[i] != null && records[i].MaintenanceDate < DateTime.Now)
                     {
                         records[i].DisplayRecord();
                         T2 = true;
@@ -203,7 +203,7 @@ namespace CarMaintenanceSystem
                 if (records[i].VehicleID == vid)
                 {
                     records[i].AssignProvider(pid);
-                    Console.WriteLine($" Service Provider {pid} assigned successfully to vehicle ID {vid}!");
+                    Console.WriteLine($" *****Service Provider {pid} assigned successfully to vehicle ID {vid}!*****");
                     return;
                 }
             }
@@ -221,6 +221,64 @@ namespace CarMaintenanceSystem
     {
         static void Main(string[] args)
         {
+             MaintanceManager manager = new MaintanceManager();
+              bool exit = false;
+
+              while (!exit)
+              {
+                  Console.WriteLine("=================================");
+                  Console.WriteLine(" Car Maintenance System ");
+                  Console.WriteLine("=================================");
+                  Console.WriteLine("1. Schedule Maintenance");
+                  Console.WriteLine("2. View Maintenance History");
+                  Console.WriteLine("3. View Service Providers");
+                  Console.WriteLine("4. Assign Service Provider");
+                  Console.WriteLine("5. Exit");
+                  Console.Write("Choose an option: ");
+
+                  int choice;
+                  bool isValid = int.TryParse(Console.ReadLine(), out choice);
+
+                  if (!isValid)
+                  {
+                      Console.WriteLine("Invalid input. Please enter a number.");
+                      continue;
+                  }
+
+                  Console.WriteLine();
+
+                  switch (choice)
+                  {
+                      case 1:
+                          manager.scheduleMaintenance();
+                          break;
+
+                      case 2:
+                          manager.viewMaintenanceHistory();
+                          break;
+
+                      case 3:
+                          manager.viewServiceProviders();
+                          break;
+
+                      case 4:
+                          manager.assignServiceProvider();
+                          break;
+
+                      case 5:
+                          exit = true;
+                          Console.WriteLine("Exiting system... Goodbye!");
+                          break;
+
+                      default:
+                          Console.WriteLine("Invalid choice, try again.");
+                          break;
+                  }
+
+                  Console.WriteLine("\nPress Enter to continue...");
+                  Console.ReadLine();
+                 // Console.Clear();
+              }
 
         }
     }
