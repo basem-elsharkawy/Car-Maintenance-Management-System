@@ -79,14 +79,15 @@ namespace CarMaintenanceSystem
             private string categoryName; // e.g., "Sedan" or "SUV"
             private string maintenanceTask;
             private string assignedProviderID = "Unassigned"; // Store the ID 
-
+            private DateTime maintenanceDate;
             // Public Constructor
-            public MaintenanceRecord(string vehicleID, string vehicleName, string categoryName, string maintenanceTask)
+            public MaintenanceRecord(string vehicleID, string vehicleName, string categoryName, string maintenanceTask , DateTime maintenanceDate)
             {
                 this.vehicleID = vehicleID;
                 this.vehicleName = vehicleName;
                 this.categoryName = categoryName;
                 this.maintenanceTask = maintenanceTask;
+                this.maintenanceDate = maintenanceDate;
             }
 
             // Method required for assigning provider in a separate step[span_14](end_span)[span_15](end_span)
@@ -100,8 +101,9 @@ namespace CarMaintenanceSystem
             public string VehicleName => vehicleName;
             public string MaintenanceTask => maintenanceTask;
             public string AssignedProviderID => assignedProviderID;
-
+            public DateTime MaintenanceDate => maintenanceDate;
             // Method to display the record details
+
             public void DisplayRecord()
             {
                 Console.WriteLine($"\t- Vehicle ID: {vehicleID}, Name: {vehicleName}");
@@ -145,7 +147,9 @@ namespace CarMaintenanceSystem
                 string category = (c == 1) ? "Sedan" : "SUV";
                 Console.WriteLine("Enter maintancetask");
                 string task = Console.ReadLine();
-                records[recordcount] = new MaintenanceRecord(id, name, category, task);
+                Console.Write("Enter Maintenance Date (yyyy-mm-dd): ");
+                DateTime date = DateTime.Parse(Console.ReadLine());
+                records[recordcount] = new MaintenanceRecord(id, name, category, task,date);
                 ++recordcount;
                 Console.WriteLine($"Maintenace task {task} scheduled successfuly for {cat}{name}(ID:{id})!");
             }
@@ -159,10 +163,32 @@ namespace CarMaintenanceSystem
                 Console.WriteLine("NO Maintenance records available");
                 return;
             }
-            for (int i = 0; i < records.Length; i++)
+            else
             {
-                records[i].DisplayRecord();
-                Console.WriteLine();
+                Console.WriteLine("-------UPComing Maintenance Services-------");
+                bool T1 = false;
+                for (int i = 0; i < records.Length; i++)
+                {
+                    if (records[i].MaintenanceDate > DateTime.Now)
+                    {
+                        records[i].DisplayRecord();
+                        T1 = true;
+                    }
+                }
+                if (T1 = false)
+                    Console.WriteLine("there is no upcomingservices");
+                Console.WriteLine("-------Past Maintenance Services-------");
+                bool T2 = false;
+                for (int i = 0; i < records.Length; i++)
+                {
+                    if (records[i].MaintenanceDate < DateTime.Now)
+                    {
+                        records[i].DisplayRecord();
+                        T2 = true;
+                    }
+                }
+                if (T2 = false)
+                    Console.WriteLine("there is no upcomingservices");
             }
         }
         public void assignServiceProvider()
