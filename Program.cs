@@ -139,10 +139,7 @@ namespace CarMaintenanceSystem
                 string id = Console.ReadLine();
                 Console.WriteLine("Enter vehicleName");
                 string name = Console.ReadLine();
-                Console.WriteLine("Enter vehicleCategory  " +
-                                "1-sedan " +
-                                "or" +
-                                "2-SUV");
+                Console.WriteLine("Enter vehicleCategory \n 1-Sedan \n 2-SUV");
                 string cat = "";
                 int c = int.Parse(Console.ReadLine());
                 string category = (c == 1) ? "Sedan" : "SUV";
